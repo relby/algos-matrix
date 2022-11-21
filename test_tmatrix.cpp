@@ -199,3 +199,21 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
   ASSERT_ANY_THROW(m1 - m2);
 }
 
+TEST(TMatrix, can_multiply_matrices_with_equal_size) // TODO
+{
+  const int size = 3;
+  TMatrix<int> m1(size), m2(size), m3(size);
+  for (int i = 0; i < size; i++) {
+    for (int j = i; j < size; j++ ) {
+      m1[i][j] = 1;
+      m2[i][j] = 2;
+    }
+  }
+  m3[0][0] = 2; m3[0][1] = 4; m3[0][2] = 6;
+                m3[1][1] = 2; m3[1][2] = 4;
+                              m3[2][2] = 2;
+
+  std::cout << m1 * m2 << std::endl;
+  std::cout << m3 << std::endl;
+  EXPECT_EQ(m1 * m2, m3);
+}
