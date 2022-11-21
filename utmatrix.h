@@ -355,15 +355,14 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt) const
   }
   return out;
 } 
-template <class ValType> // вычитание
+template <class ValType> // умножение
 TMatrix<ValType> TMatrix<ValType>::operator*(const TMatrix<ValType> &mt) const
 {
   if (this->Size != mt.Size) {
     throw std::length_error("Lengths of matrixes don't match");
   }
   TMatrix<ValType> out(this->Size);
-  for (int row = 0; row < this->Size; row++) {
-    int i = this->pVector[row].GetStartIndex();
+  for (int i = 0; i < this->Size; i++) {
     for (int j = i; j < this->Size; j++) {
       ValType sum = ValType();
       for (int k = i; k < j + 1; k++) {
